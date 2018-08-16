@@ -1,0 +1,72 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH GSound 1 "16 August 2018"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+GSound \- a small library for playing system sounds
+
+.SH SYNOPSIS
+.B gsound-play
+.RI [ options ]
+.br
+
+.SH DESCRIPTION
+.B gsound-play
+is a small program for playing sounds.
+.br
+
+.SH OPTIONS
+.TP
+.BR \-h ", " \-\-help
+Show help options.
+
+.TP
+.BR \-i ", " \-\-id=\fISTRING\fR
+Event sound identifier.
+
+.TP
+.BR \-f ", " \-\-file=\fIPATH\fR
+Play file.
+
+.TP
+.BR \-d ", " \-\-description=\fISTRING\fR
+Event sound description.
+
+.TP
+.BR \-c ", " \-\-cache-control=\fISTRING\fR
+Cache control (permanent, volatile, never).
+
+.TP
+.BR \-l ", " \-\-loop=\fIINTEGER\fR
+Loop many times (default: 1).
+
+.TP
+.BR \-v ", " \-\-volume=\fISTRING\fR
+A floating point dB value for the sample volume (ex: 0.0).
+
+.TP
+.BR \-b ", " \-\-backend=\fISTRING\fR
+libcanberra backend to use.
+
+.SH SEE ALSO
+For further information, visit the website
+https://wiki.gnome.org/Projects/GSound
+
+.SH BUGS
+All bugs in the application may be reported at the GNOME Gitlab at
+https://gitlab.gnome.org/GNOME/gsound/-/issues
+
+.\"This manual page was written by Wim Taymans <wim.taymans@gmail.com>

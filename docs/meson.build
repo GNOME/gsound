@@ -20,3 +20,8 @@ gnome.gtkdoc(
   gobject_typesfile: doc_module + '.types',
   install: true
 )
+
+install_data(
+  'gsound-play.1',
+  install_dir: join_paths(get_option('mandir'), 'man1')
+)
