@@ -102,3 +102,5 @@ DISTCLEANFILES = tmpl/gsound-unused.sgml
 #TESTS = $(GTKDOC_CHECK)
 
 -include $(top_srcdir)/git.mk
+
+dist_man_MANS = gsound-play.1
