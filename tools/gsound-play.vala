@@ -55,6 +55,8 @@ async void play() throws Error
 
 int main(string[] args)
 {
+    Intl.setlocale (LocaleCategory.ALL, "");
+
     Environment.set_application_name("gsound-play");
     
     var opt_ctx = new OptionContext();
