@@ -1,0 +1,18 @@
+option(
+  'gtk_doc',
+  type: 'boolean',
+  value: false,
+  description: 'Generate API reference using GTK-Doc'
+)
+option(
+  'introspection',
+  type: 'boolean',
+  value: true,
+  description: 'Generate GObject Introspection data'
+)
+option(
+  'enable_vala',
+  type: 'boolean',
+  value: true,
+  description: 'Build vala tools and VAPI'
+)
