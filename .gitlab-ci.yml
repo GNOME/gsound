@@ -1,0 +1,26 @@
+image: fedora:rawhide
+
+variables:
+  DEPENDENCIES:
+    gcc
+    automake
+    autoconf
+    autoconf-archive
+    libtool
+    glibc-devel
+    glib-devel
+    gtk-doc
+    gobject-introspection-devel
+    libcanberra-devel
+    vala
+
+build_stable:
+  before_script:
+    - dnf update -y --nogpgcheck
+    - dnf install -y --nogpgcheck $DEPENDENCIES
+  script:
+    - mkdir _build
+    - cd _build
+    - ../autogen.sh --prefix=/usr --sysconfdir=/etc
+    - make
+    - make install
