@@ -13,6 +13,9 @@ variables:
     gobject-introspection-devel
     libcanberra-devel
     vala
+  DEPENDENCIES_ABI_CHECK:
+    libabigail
+  LAST_ABI_BREAK: "a86946b494aa32782b3f6334344d07b5c11d5219"
 
 build_stable:
   before_script:
@@ -24,3 +27,8 @@ build_stable:
     - ../autogen.sh --prefix=/usr --sysconfdir=/etc
     - make
     - make install
+    - cd ..
+    # Check on ABI
+    - curl https://gitlab.freedesktop.org/hadess/check-abi/-/raw/main/contrib/check-abi-fedora.sh | bash
+    - dnf install -y $DEPENDENCIES_ABI_CHECK
+    - check-abi ${LAST_ABI_BREAK} $(git rev-parse HEAD)
