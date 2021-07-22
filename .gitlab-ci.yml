@@ -24,7 +24,7 @@ build_stable:
   script:
     - mkdir _build
     - cd _build
-    - ../autogen.sh --prefix=/usr --sysconfdir=/etc
+    - ../autogen.sh --prefix=/usr --sysconfdir=/etc --enable-vala=yes --enable-gtk-doc --enable-introspection
     - make
     - make install
     - cd ..
