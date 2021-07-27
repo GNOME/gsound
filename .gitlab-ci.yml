@@ -3,10 +3,8 @@ image: fedora:rawhide
 variables:
   DEPENDENCIES:
     gcc
-    automake
-    autoconf
-    autoconf-archive
-    libtool
+    meson
+    git
     glibc-devel
     glib-devel
     gtk-doc
@@ -14,7 +12,11 @@ variables:
     libcanberra-devel
     vala
   DEPENDENCIES_ABI_CHECK:
+    automake
+    autoconf
+    autoconf-archive
     libabigail
+    libtool
   LAST_ABI_BREAK: "a86946b494aa32782b3f6334344d07b5c11d5219"
 
 build_stable:
@@ -22,12 +24,10 @@ build_stable:
     - dnf update -y --nogpgcheck
     - dnf install -y --nogpgcheck $DEPENDENCIES
   script:
-    - mkdir _build
-    - cd _build
-    - ../autogen.sh --prefix=/usr --sysconfdir=/etc --enable-vala=yes --enable-gtk-doc --enable-introspection
-    - make
-    - make install
-    - cd ..
+    - meson . _build --prefix=/usr -Dgtk_doc=true -Dintrospection=true -Denable_vala=true
+    - ninja -C _build
+    - ninja -C _build install
+    - ninja -C _build dist
     # Check on ABI
     - curl https://gitlab.freedesktop.org/hadess/check-abi/-/raw/main/contrib/check-abi-fedora.sh | bash
     - dnf install -y $DEPENDENCIES_ABI_CHECK
