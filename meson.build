@@ -1,7 +1,7 @@
 project(
   'gsound',
   'c',
-  version : '1.0.2',
+  version : '1.0.3',
 )
 
 test_cflags = [
