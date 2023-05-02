@@ -25,7 +25,7 @@ variables:
 
 build_stable:
   stage: "build"
-  image: fedora:34
+  image: fedora:latest
   before_script:
     - dnf update -y --nogpgcheck
     - dnf install -y --nogpgcheck $DEPENDENCIES
