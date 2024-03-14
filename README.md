@@ -11,9 +11,9 @@ Homepage: https://wiki.gnome.org/Projects/GSound
 
 Documentation: https://developer.gnome.org/gsound/stable
 
-Source: https://git.gnome.org/browse/gsound
+Source: https://gitlab.gnome.org/GNOME/gsound
 
-Bugs: https://bugzilla.gnome.org/enter_bug.cgi?product=gsound
+Bugs: https://gitlab.gnome.org/GNOME/gsound/-/issues
 
 ##Usage via GObject Introspection.
 
