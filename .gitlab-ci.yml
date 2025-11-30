@@ -1,4 +1,7 @@
-image: fedora:34
+include:
+  - component: "gitlab.gnome.org/GNOME/citemplates/release-service@master"
+    inputs:
+      dist-job-name: "build_stable"
 
 variables:
   DEPENDENCIES:
@@ -17,18 +20,27 @@ variables:
     autoconf-archive
     libabigail
     libtool
+  MESON_BUILD_DIR: "_build"
   LAST_ABI_BREAK: "a86946b494aa32782b3f6334344d07b5c11d5219"
 
 build_stable:
+  stage: "build"
+  image: fedora:34
   before_script:
     - dnf update -y --nogpgcheck
     - dnf install -y --nogpgcheck $DEPENDENCIES
   script:
-    - meson . _build --prefix=/usr -Dgtk_doc=true -Dintrospection=true -Denable_vala=true
-    - ninja -C _build
-    - ninja -C _build install
-    - ninja -C _build dist
+    - meson . "${MESON_BUILD_DIR}" --prefix=/usr -Dgtk_doc=true -Dintrospection=true -Denable_vala=true
+    - ninja -C "${MESON_BUILD_DIR}"
+    - ninja -C "${MESON_BUILD_DIR}" install
+    - ninja -C "${MESON_BUILD_DIR}" dist
+    - cp -r "${MESON_BUILD_DIR}/meson-dist/" "${CI_PROJECT_DIR}/public-dist/"
     # Check on ABI
     - curl https://gitlab.freedesktop.org/hadess/check-abi/-/raw/main/contrib/check-abi-fedora.sh | bash
     - dnf install -y $DEPENDENCIES_ABI_CHECK
     - check-abi ${LAST_ABI_BREAK} $(git rev-parse HEAD)
+  artifacts:
+    when: always
+    paths:
+      - ${MESON_BUILD_DIR}/meson-logs/*
+      - "public-dist"
