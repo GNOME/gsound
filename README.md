@@ -9,7 +9,7 @@ used via GObject Introspection, and is a thin wrapper around the [libcanberra](h
 
 Homepage: <https://wiki.gnome.org/Projects/GSound>
 
-Documentation: <https://developer.gnome.org/gsound/stable>
+Documentation: <https://gnome.pages.gitlab.gnome.org/gsound/html/gsound-1.0.3/index.html>
 
 Source: <https://gitlab.gnome.org/GNOME/gsound>
 
