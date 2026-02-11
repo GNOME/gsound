@@ -7,22 +7,23 @@ What is it?
 GSound is a small library for playing system sounds. It's designed to be
 used via GObject Introspection, and is a thin wrapper around the [libcanberra](http://0pointer.de/lennart/projects/libcanberra/) C library.
 
-Homepage: https://wiki.gnome.org/Projects/GSound
+Homepage: <https://wiki.gnome.org/Projects/GSound>
 
-Documentation: https://developer.gnome.org/gsound/stable
+Documentation: <https://developer.gnome.org/gsound/stable>
 
-Source: https://gitlab.gnome.org/GNOME/gsound
+Source: <https://gitlab.gnome.org/GNOME/gsound>
 
-Bugs: https://gitlab.gnome.org/GNOME/gsound/-/issues
+Bugs: <https://gitlab.gnome.org/GNOME/gsound/-/issues>
 
-##Usage via GObject Introspection.
+Usage via GObject Introspection
+--------------------------------
 
 As GSound is based on libcanberra it shares a similar API. To use it,
 you first create and initialise a GSound context. You then pass the
 context a list of (attribute, value) pairs instructing it what to play,
 like so in Python:
 
-```Python
+```py
 from gi.repository import GSound
 
 try:
@@ -36,7 +37,7 @@ except:
 
 or the equivalent in JavaScript (using GJS)
 
-```JavaScript
+```js
 const GSound = imports.gi.GSound;
 
 let ctx = new GSound.Context();
@@ -50,7 +51,7 @@ try {
 }
 ```
 
-The list of supported attributes can be found in 
+The list of supported attributes can be found in
 [gsound-attr.h](https://developer.gnome.org/gsound/stable/gsound-GSound-Attributes.html),
 and can be used via the `GSound.ATTR_*` string constants if the target
 language supports this.
@@ -87,7 +88,7 @@ varargs, these are used to pass attribute-value pairs rather than
 `GHashTable`s. One neat feature as that since `play_full()` is a proper
 async function, it can be used with `yield` like so:
 
-```Vala
+```vala
 public async void play(string filename,
                        GLib.Cancellable? cancellable) throws GLib.Error
 {
@@ -105,11 +106,11 @@ Usage in C
 -----------
 
 As a C library, GSound can of course be used from C and C++. If your project
-is already using  GObject libraries then you'll find the style fits right in.
+is already using GObject libraries then you'll find the style fits right in.
 Like Vala, the C API uses varargs to pass attributes to the backend, for
 example (error checking omitted for brevity):
 
-```C
+```c
 GSoundContext *ctx = gsound_context_new(NULL, NULL);
 
 gsound_context_play_simple(ctx, NULL, NULL;
@@ -124,7 +125,7 @@ License
 > under the terms of the GNU Lesser General Public License as published
 > by the Free Software Foundation, either version 2.1 of the License, or
 > (at your option) any later version.
-
+>
 > This program is distributed in the hope that it will be useful, but
 > WITHOUT ANY WARRANTY; without even the implied warranty of
 > MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser
@@ -137,7 +138,7 @@ Building GSound from git requires a fairly modern Gnome development
 environment; so far it's only been tested on Fedora 20. At a minimum,
 you'll need headers for GObject (at least 2.36.0) and libcanberra, as well
 as the needed machinery to generate GObject introspection data and the Vala
-VAPI. 
+VAPI.
 
 Differences from libcanberra
 ----------------------------
